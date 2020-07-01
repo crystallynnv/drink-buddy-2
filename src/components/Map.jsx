@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Map = () => {
-    function initialize(){
+    // function initialize(){
         
-    }
+    // }
 
     return ( 
         <div>
