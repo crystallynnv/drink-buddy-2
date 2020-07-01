@@ -13,8 +13,19 @@ class App extends Component {
   state = { 
     user: '',
     lat: 37.422,
-    lng: 122.0841
+    lng: -122.0841
    }
+
+   componentDidMount() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      });
+      console.log("Latitude is :", this.state.lat );
+      console.log("Longitude is :", this.state.lng);
+    });
+  }
 
   render() { 
     return ( 
@@ -26,7 +37,7 @@ class App extends Component {
           style={mapStyles}
           initialCenter={{
             lat: 37.4220,
-            lng: 122.0841
+            lng: -122.0841
           }}
         >
          <Marker
