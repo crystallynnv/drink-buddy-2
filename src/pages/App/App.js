@@ -8,16 +8,15 @@ const mapStyles = {
   height: '50%'
 };
 
-
 class App extends Component {
   state = { 
     user: '',
-    lat: 37.422,
-    lng: -122.0841
+    lat: Number,
+    lng: Number
    }
 
    componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
       this.setState({
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -35,14 +34,15 @@ class App extends Component {
           google={this.props.google}
           zoom={14}
           style={mapStyles}
-          initialCenter={{
-            lat: 37.4220,
-            lng: -122.0841
+          center={{
+            lat: this.state.lat,
+            lng: this.state.lng
           }}
         >
          <Marker
           onClick={this.onMarkerClick}
-          name={'This is test name'}
+          name={'Your current location'}
+          position={{lat: this.state.lat, lng: this.state.lng}}
         />
         </Map>
       </div>
