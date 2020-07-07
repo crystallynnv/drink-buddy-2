@@ -30,6 +30,7 @@ class App extends Component {
     return ( 
       <div>
         <h1>Landing Page</h1>
+        <div class="ui input"><input type="text" placeholder="Search..." /></div>
         <Map
           google={this.props.google}
           zoom={14}
