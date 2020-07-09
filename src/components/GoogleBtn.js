@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+//import ReactDOM from 'react-dom';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 
@@ -14,6 +14,7 @@ class GoogleBtn extends Component {
       isLogined: false,
       accessToken: ''
     };
+    //console.log(this.state)
 
     this.login = this.login.bind(this);
     this.handleLoginFailure = this.handleLoginFailure.bind(this);
@@ -22,13 +23,15 @@ class GoogleBtn extends Component {
   }
 
   login (response) {
-    if(response.Zi.access_token){
+      console.log(response)
+    if(response.Qt.access_token){
       this.setState(state => ({
         isLogined: true,
-        accessToken: response.Zi.access_token
+        accessToken: response.Qt.access_token
       }));
-      console.log("logged in")
     }
+    console.log("logged in")
+    console.log(this.state)
   }
 
   logout (response) {
@@ -56,13 +59,17 @@ class GoogleBtn extends Component {
           onLogoutSuccess={ this.logout }
           onFailure={ this.handleLogoutFailure }
         >
-        </GoogleLogout>: <GoogleLogin
+        </GoogleLogout>
+        : 
+        <GoogleLogin
           clientId={ CLIENT_ID }
           buttonText='Login'
           onSuccess={ this.login }
+          
+          //isSignedIn={true}
           onFailure={ this.handleLoginFailure }
           cookiePolicy={ 'single_host_origin' }
-          responseType='code,token'
+          responseType="code,token"
         />
       }
       { this.state.accessToken ? <h5>Your Access Token: <br/><br/> { this.state.accessToken }</h5> : null }
