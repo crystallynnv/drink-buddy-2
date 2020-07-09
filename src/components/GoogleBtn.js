@@ -22,20 +22,24 @@ class GoogleBtn extends Component {
   }
 
   login (response) {
-    if(response.Zi.access_token){
-      this.setState(state => ({
-        isLogined: true,
-        accessToken: response.Zi.access_token
-      }));
-      console.log("logged in")
-    }
+    console.log(response)
+  if(response.accessToken){
+    this.setState(state => ({
+      isLogined: true,
+      accessToken: response.accessToken
+    }));
   }
+  console.log("logged in")
+  console.log(this.state)
+}
 
   logout (response) {
     this.setState(state => ({
       isLogined: false,
       accessToken: ''
     }));
+    console.log('logged out')
+    console.log(this.state)
   }
 
   handleLoginFailure (response) {
